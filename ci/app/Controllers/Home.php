@@ -154,9 +154,9 @@ class Home extends BaseController
 				var_dump($alp);
 				$pinID = $Pins->where('pin',$alp['ref'])->find()[0]['id'];
 				var_dump($pinID);
-				// $Pins->update($pinID,['used' => 'yes']);
+				$Pins->update($pinID,['used' => 'yes']);
 			}
-			// return redirect()->back();
+			return redirect()->back();
 		} else {
 			echo view('login');
 		}
