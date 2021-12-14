@@ -126,6 +126,42 @@ class Home extends BaseController
 		}
 	}
 
+	public function resetPin()
+	{
+		$logged_in = session()->get('admin_logged_in');
+		if ($logged_in) {
+			$Pins = new \App\Models\Pins();
+			for ($i=0; $i < 1001; $i++) { 
+				$Pins->update($i+1, ['used' => 'no']);
+			}
+			return redirect()->back();
+		} else {
+			echo view('login');
+		}
+	}
+
+	public function calibrate()
+	{
+		$logged_in = session()->get('admin_logged_in');
+		if ($logged_in) {
+			$Pins = new \App\Models\Pins();
+			$Delegates = new \App\Models\Delegates();
+
+			$allPined = $Delegates->findAll();
+			$allPins = $Pins->findAll();
+			foreach ($allPined as $key => $alp) {
+				// $Pins->where('pin',$alp['ref'])->update(['used' => 'yes']);
+				var_dump($alp);
+				$pinID = $Pins->where('pin',$alp['ref'])->find()[0]['id'];
+				var_dump($pinID);
+				$Pins->update($pinID,['used' => 'yes']);
+			}
+			return redirect()->back();
+		} else {
+			echo view('login');
+		}
+	}
+
 
 	public function special()
 	{

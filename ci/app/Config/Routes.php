@@ -34,6 +34,8 @@ $routes->get('/', 'Home::index');
 $routes->get('/dashboard', 'Home::dashboard');
 $routes->get('/special', 'Home::special');
 $routes->get('/sellpin', 'Home::sellpin');
+$routes->get('/calibrate', 'Home::calibrate');
+$routes->get('/reset', 'Home::resetPin');
 $routes->post('/auth', 'Home::auth');
 $routes->post('/sharepin', 'Home::sharepin');
 $routes->post('/logupdate', 'Home::logupdate');
